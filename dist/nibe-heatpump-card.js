@@ -2,7 +2,7 @@
  * NIBE Heat Pump Card — a futuristic Lovelace card for NIBE heat pumps.
  * Single file, no build step, no external dependencies.
  */
-const CARD_VERSION = "1.0.0";
+const CARD_VERSION = "1.0.1";
 
 const DEFAULT_ENTITIES = {
   status: "sensor.priority_31029",
@@ -663,7 +663,7 @@ class NibeHeatpumpCard extends HTMLElement {
 
     // ventilation
     const dEl = this._$("[data-delta]");
-    dEl.innerHTML = ext.num != null && exh.num != null ? `${(ext.num - exh.num).toFixed(1)}<small>${esc(ext.unit || "°C")}</small>` : "—";
+    dEl.innerHTML = ext.num != null && exh.num != null ? `${(exh.num - ext.num).toFixed(1)}<small>${esc(ext.unit || "°C")}</small>` : "—";
     this._$(".vent-fan").classList.toggle("stopped", !ext.ok && !exh.ok);
 
     this._updateBoost(wrap);
